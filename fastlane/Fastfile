@@ -79,34 +79,43 @@ platform :android do
   desc "Deploy latest Beta build to Crashlytics Beta"
   lane :beta do
     gradle(task: "assembleRelease")
-    crashlytics
   end
 
-  # use like this `fastlane distribute group:only-me`
-  desc "Deploy latest Beta build to Firebase App Distribution"
   lane :distribute do |options|
     if options[:group]
       build_android_app(
         task: "assemble",
-        flavor: "prod",
+        flavor: "beta",
         build_type: "release"
       )
 
       firebase_app_distribution(
-          app: ENV['FIREBASE_APP_ID_ANDROID'],
+          # app: "1:646292848791:android:d4df2d386f0e10388aa9d2",
+          app: "1:646292848791:android:5c8c643ea24364db8aa9d2",
+          # app: "e8c6ee2d2fb16c7f0ff5e891c21494ecbe8b3735",
           groups: options[:group],
-          release_notes: "Fastlane Droid Release Notes Updated 1.0.0",
+          # testers: "mfaiz236@gmail.com",
+          release_notes: "Release Notes Updated 1.0.3",
           firebase_cli_path: "/usr/local/bin/firebase",
-          firebase_cli_token: ENV['FIREBASE_CI_TOKEN']
+          firebase_cli_token: "1//0gDoSBB3ZnYrzCgYIARAAGBASNwF-L9IrRG_d6uewuLg6O4QJ8gwKTAl2CbCBWjpik9mwJflfTjaPEiEfo5gklpQ2oewe7xMimkU"
       )
     else
       UI.user_error!("Missing group name!")
     end
   end
 
-  desc "Deploy latest version to Google Play"
-  lane :deploy do
-    gradle(task: "assembleRelease")
-    upload_to_play_store
-  end
+
+ #Main Distribute lane
+ # lane :distribute do    ENV['FIREBASE_APP_ID_ANDROID']
+ #   gradle(task: "clean assembleRelease")    ENV['FIREBASE_CI_TOKEN']
+ #     firebase_app_distribution(
+ #        app: "1:646292848791:android:d4df2d386f0e10388aa9d2",
+ #        firebase_cli_token: "1//0gI91yNlNq_ksCgYIARAAGBASNwF-L9IrNZ6idN62wUSXLGeSrAf4FXQ7VoaZYDKSwqf-Phg29_WvuNTxqDUQDdzwYXCNuPpX9d0",
+ #        testers: "mfaiz236@gmail.com",
+ #        release_notes: "Release Notes Updated 1.0.0"
+ #     )
+ # end
+
+
+
 end

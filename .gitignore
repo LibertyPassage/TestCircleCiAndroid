@@ -13,4 +13,21 @@
 .externalNativeBuild
 .cxx
 local.properties
-/fastlane/.env
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/README.md
+fastlane/.env
+
+# keystore
+keystores/
+keystore.jks
+
+# google-services.json
+app/google-services.json
+app/src/beta/google-services.json
+app/src/dev/google-services.json
+app/src/prod/google-services.json
