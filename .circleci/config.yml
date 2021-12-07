@@ -139,6 +139,16 @@ jobs:
       - run:
           name: Deploy latest Beta build to Firebase App Distribution
           command: bundle exec fastlane distribute group:android-qa
+      - store_artifacts:
+          path: app/build/outputs/
+          destination: /outputs/
+      - store_test_results:
+          path: app/build/outputs/
+          destination: /outputs/
+      - store_artifacts:
+          path: app/build/outputs/apk/
+          destination: apks/
+
 
 workflows:
   version: 2
