@@ -90,14 +90,12 @@ platform :android do
       )
 
       firebase_app_distribution(
-          # app: "1:646292848791:android:d4df2d386f0e10388aa9d2",
-          app: "1:646292848791:android:5c8c643ea24364db8aa9d2",
-          # app: "e8c6ee2d2fb16c7f0ff5e891c21494ecbe8b3735",
+          # app: "1:646292848791:android:5c8c643ea24364db8aa9d2",
+          app: ENV['FIREBASE_APP_ID_ANDROID'],
           groups: options[:group],
-          # testers: "mfaiz236@gmail.com",
           release_notes: "Release Notes Updated 1.0.3",
           firebase_cli_path: "/usr/local/bin/firebase",
-          firebase_cli_token: "1//0gDoSBB3ZnYrzCgYIARAAGBASNwF-L9IrRG_d6uewuLg6O4QJ8gwKTAl2CbCBWjpik9mwJflfTjaPEiEfo5gklpQ2oewe7xMimkU"
+          firebase_cli_token: ENV['FIREBASE_CI_TOKEN']
       )
     else
       UI.user_error!("Missing group name!")
